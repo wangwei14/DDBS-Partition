@@ -1,0 +1,22 @@
+tables
+warehouse 1 1X1
+stock 100000 100000X1
+item 100000 100000X1
+district 10 10X1
+customer 30000 30000X1
+order 30000 30000X1
+history 30000 30000X1
+new-order 9000 9000X1
+order-line 300000 300000X1
+
+fks
+warehouse district
+warehouse stock
+item stock
+district customer
+customer order
+customer history
+order new-order
+order order-line
+stock order-line
+district history

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+<mycat:schema xmlns:mycat="http://io.mycat/">
+
+	<schema name="ww_test" checkSQLschema="false" sqlMaxLimit="2000">
+		<table name="warehouse" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  primaryKey="w_id"  rule="sharding_by_w_id" />
+		<table name="customer" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  primaryKey="c_id"  rule="sharding_by_c_w_id" />
+        <table name="district" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  primaryKey="c_id"  rule="sharding_by_d_w_id" />
+        <table name="history" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  rule="sharding_by_h_w_id" />
+        <table name="item" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  type = "global" />
+        <table name="new_orders" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  rule="sharding_by_no_w_id" />
+        <table name="order_line" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  primaryKey="ex_id"  rule="sharding_by_ol_w_id" />
+        <table name="orders" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  rule="sharding_by_o_w_id" />
+        <table name="stock" dataNode="dn1,dn2,dn3,dn4,dn5,dn6,dn7,dn8,dn9"  primaryKey="h_t_id"  rule="sharding_by_s_w_id" />
+        <!-- ,dn4,dn5,dn6,dn7,dn8,dn9,dn10 -->
+	</schema>
+	
+
+	<dataNode name="dn1" dataHost="dn1_Host" database="test0" />
+	<dataNode name="dn2" dataHost="dn2_Host" database="test1" />
+	<dataNode name="dn3" dataHost="dn3_Host" database="test2" />
+	<dataNode name="dn4" dataHost="dn1_Host" database="test3" />
+	<dataNode name="dn5" dataHost="dn2_Host" database="test4" />
+	<dataNode name="dn6" dataHost="dn3_Host" database="test5" />
+	<dataNode name="dn7" dataHost="dn1_Host" database="test6" />
+	<dataNode name="dn8" dataHost="dn2_Host" database="test7" />
+	<dataNode name="dn9" dataHost="dn3_Host" database="test8" />
+	<!-- <dataNode name="dn10" dataHost="dn3_Host" database="tpcc_db10" /> -->
+
+	<dataHost name="dn1_Host" maxCon="2000" minCon="10" balance="1"
+			  writeType="0" dbType="mysql" dbDriver="native">
+		<heartbeat>select user()</heartbeat>
+		<writeHost host="hostM1" url="166.111.71.107:3306" user="root"
+				   password="131071">
+			<readHost host="hostS1" url="166.111.71.107:3306" user="root" password="131071" />
+		</writeHost>
+	</dataHost>
+
+	<dataHost name="dn2_Host" maxCon="2000" minCon="10" balance="1"
+			  writeType="0" dbType="mysql" dbDriver="native">
+		<heartbeat>select user()</heartbeat>
+		<writeHost host="hostM2" url="166.111.71.12:3306" user="root"
+				   password="131071">
+			<readHost host="hostS2" url="166.111.71.12:3306" user="root" password="131071" />
+		</writeHost>
+	</dataHost>
+
+	<dataHost name="dn3_Host" maxCon="2000" minCon="10" balance="1"
+			  writeType="0" dbType="mysql" dbDriver="native">
+		<heartbeat>select user()</heartbeat>
+		<writeHost host="hostM3" url="166.111.71.14:3306" user="root"
+				   password="131071">
+			<readHost host="hostS3" url="166.111.71.14:3306" user="root" password="131071" />
+		</writeHost>
+	</dataHost>
+
+</mycat:schema>

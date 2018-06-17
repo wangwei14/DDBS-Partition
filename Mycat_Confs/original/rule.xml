@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mycat:rule SYSTEM "rule.dtd">
+<mycat:rule xmlns:mycat="http://io.mycat/">
+	<tableRule name="sharding_by_w_id">
+	    <rule>
+	        <columns>w_id</columns>
+	        <algorithm>sharding_by_w_idFunc</algorithm>
+	    </rule>
+	</tableRule>
+	<tableRule name="sharding_by_no_w_id">
+	    <rule>
+	        <columns>no_w_id</columns>
+	        <algorithm>sharding_by_w_idFunc</algorithm>
+	    </rule>
+	</tableRule>
+	<tableRule name="sharding_by_o_w_id">
+	    <rule>
+	        <columns>o_w_id</columns>
+	        <algorithm>sharding_by_w_idFunc</algorithm>
+	    </rule>
+	</tableRule>
+	<tableRule name="sharding_by_d_w_id">
+	    <rule>
+	        <columns>d_w_id</columns>
+	        <algorithm>sharding_by_w_idFunc</algorithm>
+	    </rule>
+	</tableRule>
+
+	<tableRule name="sharding_by_ol_w_id">
+	    <rule>
+	        <columns>ol_w_id</columns>
+	        <algorithm>sharding_by_w_idFunc</algorithm>
+	    </rule>
+	</tableRule>
+	<tableRule name="sharding_by_s_w_id">
+	    <rule>
+	        <columns>s_w_id</columns>
+	        <algorithm>sharding_by_w_idFunc</algorithm>
+	    </rule>
+	</tableRule>
+	<tableRule name="sharding_by_c_w_id">
+	    <rule>
+	        <columns>c_w_id</columns>
+	        <algorithm>sharding_by_w_idFunc</algorithm>
+	    </rule>
+	</tableRule>
+	<tableRule name="sharding_by_h_w_id">
+	    <rule>
+	        <columns>h_w_id</columns>
+	        <algorithm>sharding_by_w_idFunc</algorithm>
+	    </rule>
+	</tableRule>
+
+
+	<function name="sharding_by_w_idFunc" class="io.mycat.route.function.PartitionByMod">
+		<property name="count">3</property>
+	</function>
+
+</mycat:rule>
